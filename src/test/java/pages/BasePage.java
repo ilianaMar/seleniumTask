@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.Duration;
+import java.util.List;
 
 public class BasePage {
     public WebDriver driver;
@@ -34,6 +35,13 @@ public class BasePage {
     public WebElement find(By elementBy) {
         waitVisibility(elementBy);
         return driver.findElement(elementBy);
+    }
+
+    //Find Elements
+    public List<WebElement> findElements(By firstElementBy, By secondElementBy) {
+        waitVisibility(firstElementBy);
+        waitVisibility(secondElementBy);
+        return driver.findElement(firstElementBy).findElements(secondElementBy);
     }
 
     //Write Text

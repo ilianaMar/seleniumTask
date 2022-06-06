@@ -1,9 +1,12 @@
 package stepDefinitions;
+
 import io.cucumber.java.Before;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import helpers.SeleniumDriverHelper;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 import pages.CartPage;
 import pages.CategoryPage;
 import pages.HomePage;
@@ -38,7 +41,7 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
 
     @And("^I add (\\d+) books{0,1} from search page$")
     public void iAddBook(int count) {
-        for (int i=0 ; i <= count-1 ; ++i){
+        for (int i = 0; i <= count - 1; ++i) {
             searchPage.addProductToBasket(i);
         }
         searchPage.visitCartPage();
@@ -52,12 +55,12 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
 
     @When("I update book quantity to be {int}")
     public void iUpdateBookQuantityToBe(int count) {
-        float oldPrice  = cartPage.getTotalPrice();
+        float oldPrice = cartPage.getTotalPrice();
         System.out.println(oldPrice);
         cartPage.updateQuantityCount(count);
-        float newPrice  = cartPage.getTotalPrice();
+        float newPrice = cartPage.getTotalPrice();
         System.out.println(newPrice);
-        assertEquals(newPrice, (count*oldPrice));
+        assertEquals(newPrice, (count * oldPrice));
     }
 
     @When("I visit new books category with url {string}")
@@ -72,7 +75,7 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
 
     @And("^I add (\\d+) books{0,1} from category page$")
     public void iAddBookFromCategoryPage(int count) {
-        for (int i=0 ; i <= count-1 ; ++i){
+        for (int i = 0; i <= count - 1; ++i) {
             categoryPage.addToBasket(i);
         }
         searchPage.visitCartPage();

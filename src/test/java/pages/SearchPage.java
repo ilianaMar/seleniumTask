@@ -10,11 +10,14 @@ public class SearchPage extends BasePage {
     public SearchPage(WebDriver driver) {
         super(driver);
     }
-    private String cartUrl =  "shopping-cart";
+
+    private String cartUrl = "shopping-cart";
 
     By productListId = By.id("search_results");
     By productModal = By.id("shopcart-dropdown-container");
     By cartLink = By.xpath("//a[contains(@href, '/shopping-cart/')]");
+    By bookFieldId = By.className("book");
+    By orderLinkId = By.className("btn-order");
 
 
     public void assertPageUrl(String url) {
@@ -22,16 +25,13 @@ public class SearchPage extends BasePage {
     }
 
     public void addProductToBasket(int index) {
-        List<WebElement> items = find(productListId).findElements(By.className("book"));
-        items.get(index).findElement(By.className("btn-order")).click();
+        List<WebElement> items = findElements(productListId, bookFieldId);
+        items.get(index).findElement(orderLinkId).click();
         find(productModal).isDisplayed();
     }
 
     public void visitCartPage() {
         click(cartLink);
         assertCurrentPageUrl(this.cartUrl);
-        new CartPage(driver);
     }
-
-
 }

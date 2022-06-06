@@ -25,17 +25,15 @@ public class CartPage extends BasePage {
 
 
     public void verifyBasketBookName(String bookName) {
-        WebElement baseTable = find(shoppingTable);
-        List<WebElement> bookRows = baseTable.findElements(bookRowId);
+        List<WebElement> bookRows = findElements(shoppingTable, bookRowId);
         for (WebElement bRow : bookRows) {
             StringUtils.containsIgnoreCase(bRow.getText(), bookName);
         }
 
     }
 
-    public void verifyBasketCount(int bookCount){
-        WebElement baseTable = find(shoppingTable);
-        List<WebElement> tdQuantityRows = baseTable.findElements(quantityRowId);
+    public void verifyBasketCount(int bookCount) {
+        List<WebElement> tdQuantityRows = findElements(shoppingTable, quantityRowId);
         List<Integer> rowInputs = new ArrayList<>();
         int sum = 0;
 
@@ -49,8 +47,8 @@ public class CartPage extends BasePage {
         assertEquals(sum, bookCount);
     }
 
-    public void updateQuantityCount(int count){
-        List<WebElement> tdQuantityRows = find(shoppingTable).findElements(quantityRowId);
+    public void updateQuantityCount(int count) {
+        List<WebElement> tdQuantityRows = findElements(shoppingTable, quantityRowId);
         for (WebElement row : tdQuantityRows) {
             row.findElement(quantityInput).clear();
             row.findElement(quantityInput).sendKeys(String.valueOf(count));
@@ -59,13 +57,13 @@ public class CartPage extends BasePage {
 
     }
 
-    public float getTotalPrice(){
+    public float getTotalPrice() {
         WebElement totalPriceField = find(shoppingTable).findElement(totalPriceTdId);
         WebElement currencyTotalPrice = find(shoppingTable).findElement(currencyTotalPriceSpanId);
-        String totalPriceValue =  StringUtils.trim(totalPriceField.getText()).replace(currencyTotalPrice.getText(),
-                    "");
+        String totalPriceValue = StringUtils.trim(totalPriceField.getText()).replace(currencyTotalPrice.getText(),
+                "");
 
-       return Float.parseFloat(totalPriceValue);
+        return Float.parseFloat(totalPriceValue);
     }
 
 }

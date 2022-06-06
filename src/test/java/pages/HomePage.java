@@ -44,13 +44,11 @@ public class HomePage extends BasePage {
     public void searchByName(String searchCriteria) {
         writeText(searchInput, searchCriteria);
         click(searchButton);
-        new SearchPage(driver);
     }
 
-    public CategoryPage selectBookCategory(String categoryUrl){
-        By categoryId = By.xpath("//a[contains(@href, '"+ categoryUrl +"')]");
+    public void selectBookCategory(String categoryUrl) {
+        By categoryId = By.xpath("//a[contains(@href, '" + categoryUrl + "')]");
         click(categoryId);
         assertCurrentPageUrl(categoryUrl);
-        return new CategoryPage(driver);
     }
 }
