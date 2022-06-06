@@ -46,4 +46,11 @@ public class HomePage extends BasePage {
         click(searchButton);
         new SearchPage(driver);
     }
+
+    public CategoryPage selectBookCategory(String categoryUrl){
+        By categoryId = By.xpath("//a[contains(@href, '"+ categoryUrl +"')]");
+        click(categoryId);
+        assertCurrentPageUrl(categoryUrl);
+        return new CategoryPage(driver);
+    }
 }

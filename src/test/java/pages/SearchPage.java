@@ -10,6 +10,7 @@ public class SearchPage extends BasePage {
     public SearchPage(WebDriver driver) {
         super(driver);
     }
+    private String cartUrl =  "shopping-cart";
 
     By productListId = By.id("search_results");
     By productModal = By.id("shopcart-dropdown-container");
@@ -26,9 +27,9 @@ public class SearchPage extends BasePage {
         find(productModal).isDisplayed();
     }
 
-    public void visitCartPage(String url) {
+    public void visitCartPage() {
         click(cartLink);
-        assertCurrentPageUrl(url);
+        assertCurrentPageUrl(this.cartUrl);
         new CartPage(driver);
     }
 

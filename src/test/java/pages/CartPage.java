@@ -24,19 +24,23 @@ public class CartPage extends BasePage {
     By bookRowId = By.xpath("//div[@class='book']");
 
 
-    public void verifyBasketCartContent(String bookName, int bookCount) {
+    public void verifyBasketBookName(String bookName) {
         WebElement baseTable = find(shoppingTable);
         List<WebElement> bookRows = baseTable.findElements(bookRowId);
+        for (WebElement bRow : bookRows) {
+            StringUtils.containsIgnoreCase(bRow.getText(), bookName);
+        }
+
+    }
+
+    public void verifyBasketCount(int bookCount){
+        WebElement baseTable = find(shoppingTable);
         List<WebElement> tdQuantityRows = baseTable.findElements(quantityRowId);
         List<Integer> rowInputs = new ArrayList<>();
         int sum = 0;
 
         for (WebElement row : tdQuantityRows) {
             rowInputs.add(Integer.parseInt(row.findElement(quantityInput).getAttribute("value")));
-        }
-
-        for (WebElement bRow : bookRows) {
-            StringUtils.containsIgnoreCase(bRow.getText(), bookName);
         }
 
         for (Integer val : rowInputs) {

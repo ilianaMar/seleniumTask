@@ -29,8 +29,9 @@ public class ShopTests extends SeleniumDriverHelper {
         searchPage.assertPageUrl(searchCriteria);
         searchPage.addProductToBasket(0);
         searchPage.addProductToBasket(1);
-        searchPage.visitCartPage("shopping-cart");
-        cartPage.verifyBasketCartContent(searchCriteria, 2);
+        searchPage.visitCartPage();
+        cartPage.verifyBasketBookName(searchCriteria);
+        cartPage.verifyBasketCount(2);
     }
 
 }
