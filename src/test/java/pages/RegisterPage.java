@@ -8,7 +8,7 @@ import com.github.javafaker.Faker;
 import java.util.Locale;
 
 
-public class RegisterPage extends BasePage{
+public class RegisterPage extends BasePage {
     public RegisterPage(WebDriver driver) {
         super(driver);
     }
@@ -22,11 +22,11 @@ public class RegisterPage extends BasePage{
     By postcodeInputId = By.xpath("//input[@name='data[postcode]']");
     By cityInputId = By.xpath("//input[@name='data[city]']");
     By addressInputId = By.xpath("//input[@name='data[address]']");
-    By gdprCheckboxId =  By.xpath("//input[@name='data[agree_gdpr]']");
-    By confirmAgeCheckboxId =  By.xpath("//input[@name='data[confirm_age]']");
-    By orderButtonId =  By.xpath("//a[@data-submit-name='register']");
+    By gdprCheckboxId = By.xpath("//input[@name='data[agree_gdpr]']");
+    By confirmAgeCheckboxId = By.xpath("//input[@name='data[confirm_age]']");
+    By orderButtonId = By.xpath("//a[@data-submit-name='register']");
 
-    public User createUserAccount(){
+    public User createUserAccount() {
         Faker bgFaker = new Faker(new Locale("bg-BG"));
         Faker faker = new Faker();
         User user = User.builder()

@@ -39,7 +39,7 @@ public class CategoryPage extends BasePage {
         }
     }
 
-    public void visitBookDetailsPage(int index){
+    public void visitBookDetailsPage(int index) {
         List<WebElement> categoryBooksRows = findElements(baseListTable, baseListTableItemClass);
         categoryBooksRows.get(index).findElement(imageUrl).click();
     }
