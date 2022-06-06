@@ -7,16 +7,20 @@ import helpers.SeleniumDriverHelper;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import pages.CartPage;
-import pages.CategoryPage;
-import pages.HomePage;
-import pages.SearchPage;
+import models.User;
+import pages.*;
+
+import javax.imageio.spi.RegisterableService;
 
 public class ShopTestsSteps extends SeleniumDriverHelper {
     HomePage homePage = new HomePage(driver);
     SearchPage searchPage = new SearchPage(driver);
     CartPage cartPage = new CartPage(driver);
     CategoryPage categoryPage = new CategoryPage(driver);
+    RegisterPage registerPage = new RegisterPage(driver);
+    WishListPage wishListPage = new WishListPage(driver);
+    BookDetailsPage bookDetailsPage = new BookDetailsPage(driver);
+    User newUser;
 
     @Before
     public static void beforeAll() {
@@ -56,10 +60,8 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
     @When("I update book quantity to be {int}")
     public void iUpdateBookQuantityToBe(int count) {
         float oldPrice = cartPage.getTotalPrice();
-        System.out.println(oldPrice);
         cartPage.updateQuantityCount(count);
         float newPrice = cartPage.getTotalPrice();
-        System.out.println(newPrice);
         assertEquals(newPrice, (count * oldPrice));
     }
 
@@ -84,5 +86,32 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
     @Then("^I verify that (\\d+) books{0,1} is added$")
     public void iVerifyThatBookIsAdded(int count) {
         cartPage.verifyBasketCount(count);
+    }
+
+    @When("I visit  register page and create user successfully")
+    public void iVisitRegisterPageAndCreateUserSuccessfully() {
+        homePage.visitRegisterPage();
+        newUser = registerPage.createUserAccount();
+    }
+
+    @And("I visit book details page of first book and add it to wishlist")
+    public void iVisitBookDetailsPageOfFirstBookAndAddItToWishlist() {
+        categoryPage.visitBookDetailsPage(1);
+    }
+
+    @Then("^(\\d+) books{0,1} is existing in wishlist$")
+    public void theBookIsExistingInWishlist(int count) {
+        bookDetailsPage.clickOnFavoriteLink();
+        wishListPage.verifyWishlistData(count);
+    }
+
+    @And("^I remove (\\d+) books{0,1} from wishlist$")
+    public void iRemoveBookFromWishlist(int count) {
+        wishListPage.removeWishListBook();
+    }
+
+    @Then("^I check discount should be (\\d+) percentages{0,1}$")
+    public void iCheckDiscountShouldBePercentage(int discountValue) {
+        cartPage.assertDiscountValue(discountValue);
     }
 }

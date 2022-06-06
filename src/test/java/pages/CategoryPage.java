@@ -38,4 +38,9 @@ public class CategoryPage extends BasePage {
             assertTrue(book.findElement(starsId).isDisplayed());
         }
     }
+
+    public void visitBookDetailsPage(int index){
+        List<WebElement> categoryBooksRows = findElements(baseListTable, baseListTableItemClass);
+        categoryBooksRows.get(index).findElement(imageUrl).click();
+    }
 }

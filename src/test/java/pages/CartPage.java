@@ -22,6 +22,7 @@ public class CartPage extends BasePage {
     By quantityRowId = By.xpath("//td[@class='quantity']");
     By totalPriceTdId = By.cssSelector("td.totalprice");
     By bookRowId = By.xpath("//div[@class='book']");
+    By discountContainer = By.cssSelector(".discount-level-inner");
 
 
     public void verifyBasketBookName(String bookName) {
@@ -64,6 +65,12 @@ public class CartPage extends BasePage {
                 "");
 
         return Float.parseFloat(totalPriceValue);
+    }
+
+    public void assertDiscountValue(int value){
+        List<WebElement> discounts = find(discountContainer).findElements(By.tagName("strong"));
+        String discountValue = discounts.get(2).getText().replace("%", "");
+        assertEquals(Integer.parseInt(discountValue), value);
     }
 
 }
