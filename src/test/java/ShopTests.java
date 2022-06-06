@@ -12,6 +12,10 @@ public class ShopTests extends SeleniumDriverHelper {
         createBrowserInstance("chrome");
     }
 
+    @AfterAll
+    static void afterAll(){
+        teardown();
+    }
 
     @Test
     @DisplayName("bard")

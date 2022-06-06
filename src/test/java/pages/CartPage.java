@@ -17,7 +17,10 @@ public class CartPage extends BasePage {
 
     By shoppingTable = By.className("shopping-cart-list");
     By quantityInput = By.xpath("//input[contains(@name, 'quantity')]");
+    By quantityButtonId = By.className("quantity-update");
+    By currencyTotalPriceSpanId = By.cssSelector("td.totalprice .currency");
     By quantityRowId = By.xpath("//td[@class='quantity']");
+    By totalPriceTdId = By.cssSelector("td.totalprice");
     By bookRowId = By.xpath("//div[@class='book']");
 
 
@@ -40,6 +43,25 @@ public class CartPage extends BasePage {
             sum += val;
         }
         assertEquals(sum, bookCount);
+    }
+
+    public void updateQuantityCount(int count){
+        List<WebElement> tdQuantityRows = find(shoppingTable).findElements(quantityRowId);
+        for (WebElement row : tdQuantityRows) {
+            row.findElement(quantityInput).clear();
+            row.findElement(quantityInput).sendKeys(String.valueOf(count));
+            row.findElement(quantityButtonId).click();
+        }
+
+    }
+
+    public float getTotalPrice(){
+        WebElement totalPriceField = find(shoppingTable).findElement(totalPriceTdId);
+        WebElement currencyTotalPrice = find(shoppingTable).findElement(currencyTotalPriceSpanId);
+        String totalPriceValue =  StringUtils.trim(totalPriceField.getText()).replace(currencyTotalPrice.getText(),
+                    "");
+
+       return Float.parseFloat(totalPriceValue);
     }
 
 }
