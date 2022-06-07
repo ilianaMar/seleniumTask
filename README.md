@@ -4,4 +4,4 @@
 - Use library cucumber-java
 - User selenium By for locating locators
   https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/By.html
-- Generate target/cucumber-reports.html reports
+- Generate target/cucumber-reports.html reports using library cucumber-junit with CucumberOptions
