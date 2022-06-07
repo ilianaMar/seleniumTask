@@ -54,4 +54,12 @@ Feature: UI tests for bard shop site
     When I update book quantity to be 7
     Then I check discount should be 7 percentage
 
+  Scenario: Verify when generated discount is 10 percentage
+    Given I visit "bard" home page
+    When I visit new books category with url "/new-books/"
+    And I add 1 book from category page
+    Then I check discount should be 1 percentage
+    When I update book quantity to be 10
+    Then I check discount should be 10 percentage
+
 
