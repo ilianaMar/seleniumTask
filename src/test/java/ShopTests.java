@@ -6,6 +6,7 @@ import pages.SearchPage;
 
 
 public class ShopTests extends SeleniumDriverHelper {
+    private String siteName = "bard";
 
     @BeforeAll
     static void beforeAll() {
@@ -13,7 +14,7 @@ public class ShopTests extends SeleniumDriverHelper {
     }
 
     @AfterAll
-    static void afterAll(){
+    static void afterAll() {
         teardown();
     }
 
@@ -21,10 +22,10 @@ public class ShopTests extends SeleniumDriverHelper {
     @DisplayName("bard")
     void firstTest() {
         String searchCriteria = "роман";
-        HomePage homePage = new HomePage(driver);
-        SearchPage searchPage = new SearchPage(driver);
-        CartPage cartPage = new CartPage(driver);
-        homePage.visitHomePage("bard");
+        HomePage homePage = new HomePage(driver, siteName);
+        SearchPage searchPage = new SearchPage(driver, siteName);
+        CartPage cartPage = new CartPage(driver, siteName);
+        homePage.visitHomePage();
         homePage.searchByName(searchCriteria);
         searchPage.assertPageUrl(searchCriteria);
         searchPage.addProductToBasket(0);

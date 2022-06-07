@@ -11,13 +11,14 @@ import models.User;
 import pages.*;
 
 public class ShopTestsSteps extends SeleniumDriverHelper {
-    HomePage homePage = new HomePage(driver);
-    SearchPage searchPage = new SearchPage(driver);
-    CartPage cartPage = new CartPage(driver);
-    CategoryPage categoryPage = new CategoryPage(driver);
-    RegisterPage registerPage = new RegisterPage(driver);
-    WishListPage wishListPage = new WishListPage(driver);
-    BookDetailsPage bookDetailsPage = new BookDetailsPage(driver);
+    private String siteName = "bard";
+    HomePage homePage = new HomePage(driver, siteName);
+    SearchPage searchPage = new SearchPage(driver, siteName);
+    CartPage cartPage = new CartPage(driver, siteName);
+    CategoryPage categoryPage = new CategoryPage(driver, siteName);
+    RegisterPage registerPage = new RegisterPage(driver, siteName);
+    WishListPage wishListPage = new WishListPage(driver, siteName);
+    BookDetailsPage bookDetailsPage = new BookDetailsPage(driver, siteName);
     User newUser;
 
     @Before
@@ -32,13 +33,12 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
 
     @Given("I visit {string} home page")
     public void iVisitHomePage(String shopName) {
-        homePage.visitHomePage(shopName);
+        homePage.visitHomePage();
     }
 
     @When("^I search by book name (.*)$")
     public void iSearchByBookNameName(String bookName) {
         homePage.searchByName(bookName);
-        searchPage.assertPageUrl(bookName);
     }
 
     @And("^I add (\\d+) books{0,1} from search page$")
@@ -88,8 +88,10 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
 
     @When("I visit  register page and create user successfully")
     public void iVisitRegisterPageAndCreateUserSuccessfully() {
+        User newUser = registerPage.buildUserFactory();
+        System.out.println(newUser);
         homePage.visitRegisterPage();
-        newUser = registerPage.createUserAccount();
+        registerPage.createUserAccount(newUser);
     }
 
     @And("I visit book details page of first book and add it to wishlist")

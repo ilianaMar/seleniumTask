@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartPage extends BasePage {
-    public CartPage(WebDriver driver) {
-        super(driver);
+    public CartPage(WebDriver driver, String name) {
+
+        super(driver, name);
+
     }
 
     By shoppingTable = By.className("shopping-cart-list");

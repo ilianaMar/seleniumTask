@@ -9,8 +9,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CategoryPage extends BasePage {
-    public CategoryPage(WebDriver driver) {
-        super(driver);
+    public CategoryPage(WebDriver driver, String name) {
+
+        super(driver, name);
+
     }
 
     By baseListTable = By.cssSelector(".main-book-list");

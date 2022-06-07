@@ -9,8 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
 public class WishListPage extends BasePage {
-    public WishListPage(WebDriver driver) {
-        super(driver);
+    public WishListPage(WebDriver driver, String name) {
+
+        super(driver, name);
+
     }
 
     public static String urlPath = "wishlist";

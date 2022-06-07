@@ -7,8 +7,10 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class SearchPage extends BasePage {
-    public SearchPage(WebDriver driver) {
-        super(driver);
+    public SearchPage(WebDriver driver, String name) {
+
+        super(driver, name);
+
     }
 
     public static String cartUrl = "shopping-cart";
