@@ -12,6 +12,6 @@ public class BookDetailsPage extends BasePage {
 
     public void clickOnFavoriteLink() {
         find(favoriteLink).click();
-        assertCurrentPageUrl("wishlist");
+        assertCurrentPageUrl(WishListPage.urlPath);
     }
 }

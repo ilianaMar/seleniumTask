@@ -38,14 +38,20 @@ Feature: UI tests for bard shop site
     And I remove 1 book from wishlist
 #    Then 0 books is existing in wishlist
 
-  Scenario: Check Discount percent
+  Scenario: Check Discount percent for 1 and 5 percentage
     Given I visit "bard" home page
     When I visit new books category with url "/new-books/"
     And I add 1 book from category page
     Then I check discount should be 1 percentage
     When I update book quantity to be 2
     Then I check discount should be 5 percentage
-    When I update book quantity to be 4
+
+  Scenario: Check Discount percent for 1 and 7 percentage
+    Given I visit "bard" home page
+    When I visit new books category with url "/new-books/"
+    And I add 1 book from category page
+    Then I check discount should be 1 percentage
+    When I update book quantity to be 7
     Then I check discount should be 7 percentage
 
 

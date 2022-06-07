@@ -30,7 +30,6 @@ public class CartPage extends BasePage {
         for (WebElement bRow : bookRows) {
             StringUtils.containsIgnoreCase(bRow.getText(), bookName);
         }
-
     }
 
     public void verifyBasketCount(int bookCount) {
@@ -55,7 +54,6 @@ public class CartPage extends BasePage {
             row.findElement(quantityInput).sendKeys(String.valueOf(count));
             row.findElement(quantityButtonId).click();
         }
-
     }
 
     public float getTotalPrice() {
@@ -72,5 +70,4 @@ public class CartPage extends BasePage {
         String discountValue = discounts.get(2).getText().replace("%", "");
         assertEquals(Integer.parseInt(discountValue), value);
     }
-
 }

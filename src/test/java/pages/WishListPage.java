@@ -13,6 +13,8 @@ public class WishListPage extends BasePage {
         super(driver);
     }
 
+    public static String urlPath = "wishlist";
+
     By wishlistTable = By.className("main-book-list");
     By bookContainer = By.className("book");
     By removeWishListBook = By.cssSelector("a.bardbutton_silver");

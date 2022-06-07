@@ -22,6 +22,7 @@ public class SeleniumDriverHelper {
     public static void createBrowserInstance(String browserName) {
         setupDriver(browserName);
         driver = (browserName.equals("chrome")) ? new ChromeDriver() : new FirefoxDriver();
+        driver.get("chrome://settings/clearBrowserData");
         driver.manage().window().maximize();
     }
 

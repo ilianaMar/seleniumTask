@@ -13,6 +13,8 @@ public class RegisterPage extends BasePage {
         super(driver);
     }
 
+    public static String urlPath = "register";
+
     By emailInputId = By.xpath("//input[@name='data[email]']");
     By firstPasswordInputId = By.xpath("//input[@name='data[password1]']");
     By secondPasswordInputId = By.xpath("//input[@name='data[password2]']");
@@ -53,7 +55,7 @@ public class RegisterPage extends BasePage {
         find(gdprCheckboxId).click();
         find(confirmAgeCheckboxId).click();
         find(orderButtonId).click();
-        assertCurrentPageUrl("/register/?done");
+        assertCurrentPageUrl(String.format("/%s/?done", urlPath));
 
         return user;
     }

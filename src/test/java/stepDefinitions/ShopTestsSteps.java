@@ -10,8 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import models.User;
 import pages.*;
 
-import javax.imageio.spi.RegisterableService;
-
 public class ShopTestsSteps extends SeleniumDriverHelper {
     HomePage homePage = new HomePage(driver);
     SearchPage searchPage = new SearchPage(driver);
@@ -23,12 +21,12 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
     User newUser;
 
     @Before
-    public static void beforeAll() {
+    public static void beforeEach() {
         createBrowserInstance("chrome");
     }
 
     @After
-    public static void afterAll() {
+    public static void afterEach() {
         teardown();
     }
 
@@ -60,8 +58,10 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
     @When("I update book quantity to be {int}")
     public void iUpdateBookQuantityToBe(int count) {
         float oldPrice = cartPage.getTotalPrice();
+        System.out.println("11111 " + oldPrice);
         cartPage.updateQuantityCount(count);
         float newPrice = cartPage.getTotalPrice();
+        System.out.println("2222 " + newPrice);
         assertEquals(newPrice, (count * oldPrice));
     }
 
