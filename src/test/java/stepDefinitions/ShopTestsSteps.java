@@ -58,10 +58,8 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
     @When("I update book quantity to be {int}")
     public void iUpdateBookQuantityToBe(int count) {
         float oldPrice = cartPage.getTotalPrice();
-        System.out.println("11111 " + oldPrice);
         cartPage.updateQuantityCount(count);
         float newPrice = cartPage.getTotalPrice();
-        System.out.println("2222 " + newPrice);
         assertEquals(newPrice, (count * oldPrice));
     }
 
