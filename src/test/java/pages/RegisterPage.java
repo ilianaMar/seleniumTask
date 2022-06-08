@@ -34,7 +34,7 @@ public class RegisterPage extends BasePage {
     public User buildUserFactory() {
         Faker bgFaker = new Faker(new Locale("bg-BG"));
         Faker faker = new Faker();
-        User user = User.builder()
+        return User.builder()
                 .email(faker.internet().emailAddress())
                 .firstName(bgFaker.name().firstName())
                 .lastName(bgFaker.name().firstName())
@@ -44,7 +44,6 @@ public class RegisterPage extends BasePage {
                 .postcode(String.valueOf(bgFaker.number().numberBetween(1000, 9000)))
                 .password(faker.internet().password())
                 .build();
-        return user;
     }
 
     public void createUserAccount(User user) {
