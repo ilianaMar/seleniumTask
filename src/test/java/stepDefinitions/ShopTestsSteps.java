@@ -31,8 +31,8 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
         teardown();
     }
 
-    @Given("I visit {string} home page")
-    public void iVisitHomePage(String shopName) {
+    @Given("I visit bard home page")
+    public void iVisitHomePage() {
         homePage.visitHomePage();
     }
 
@@ -60,7 +60,8 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
         float oldPrice = cartPage.getTotalPrice();
         cartPage.updateQuantityCount(count);
         float newPrice = cartPage.getTotalPrice();
-        assertEquals(newPrice, (count * oldPrice));
+        float totalPrice =  count * oldPrice;
+        assertEquals(newPrice, Float.parseFloat(String.format("%.2f", totalPrice)));
     }
 
     @When("I visit new books category with url {string}")
@@ -94,14 +95,13 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
         registerPage.createUserAccount(newUser);
     }
 
-    @And("I visit book details page of first book and add it to wishlist")
+    @And("I visit book details page of first book")
     public void iVisitBookDetailsPageOfFirstBookAndAddItToWishlist() {
         categoryPage.visitBookDetailsPage(1);
     }
 
     @Then("^(\\d+) books{0,1} is existing in wishlist$")
     public void theBookIsExistingInWishlist(int count) {
-        bookDetailsPage.clickOnFavoriteLink();
         wishListPage.verifyWishlistData(count);
     }
 
@@ -113,5 +113,10 @@ public class ShopTestsSteps extends SeleniumDriverHelper {
     @Then("^I check discount should be (\\d+) percentages{0,1}$")
     public void iCheckDiscountShouldBePercentage(int discountValue) {
         cartPage.assertDiscountValue(discountValue);
+    }
+
+    @And("I add to favourites this book")
+    public void iAddToFavouritesThisBook() {
+        bookDetailsPage.clickOnFavoriteLink();
     }
 }

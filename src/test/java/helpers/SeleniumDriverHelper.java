@@ -1,10 +1,10 @@
 package helpers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
 
 public class SeleniumDriverHelper {
@@ -21,7 +21,7 @@ public class SeleniumDriverHelper {
     public static void createBrowserInstance(String browserName) {
         setupDriver(browserName);
         driver = (browserName.equals("chrome")) ? new ChromeDriver() : new FirefoxDriver();
-        driver.get("chrome://settings/clearBrowserData");
+        driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
     }
 

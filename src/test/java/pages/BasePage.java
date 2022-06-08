@@ -26,7 +26,7 @@ public class BasePage {
     public BasePage(WebDriver driver, String name) {
         this.driver = driver;
         this.siteName = name;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
 

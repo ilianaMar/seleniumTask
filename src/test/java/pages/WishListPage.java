@@ -22,15 +22,8 @@ public class WishListPage extends BasePage {
     By removeWishListBook = By.cssSelector("a.bardbutton_silver");
 
     public void verifyWishlistData(int count) {
-
-        if (count != 0) {
-            List<WebElement> wishListRows = findElements(wishlistTable, bookContainer);
-            System.out.println(wishListRows);
-            assertEquals(wishListRows.size(), count);
-        } else {
-            assertFalse(find(wishlistTable).findElement(bookContainer).isDisplayed());
-        }
-
+        List<WebElement> wishListRows = findElements(wishlistTable, bookContainer);
+        assertEquals(count, wishListRows.size());
     }
 
     public void removeWishListBook() {

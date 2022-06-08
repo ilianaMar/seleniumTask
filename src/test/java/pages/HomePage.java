@@ -36,7 +36,8 @@ public class HomePage extends BasePage {
     public void visitRegisterPage() {
         Actions action = new Actions(driver);
         action.moveToElement(find(memberDropDown)).perform();
-        action.moveToElement(find(registerLink)).click().perform();
+        find(registerLink).click();
+//        action.moveToElement(find(registerLink)).click().perform();
         assertCurrentPageUrl(RegisterPage.urlPath);
     }
 }
