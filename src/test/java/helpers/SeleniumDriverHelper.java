@@ -16,7 +16,6 @@ public class SeleniumDriverHelper {
         } else if (browserName.equals("firefox")) {
             WebDriverManager.firefoxdriver().setup();
         }
-
     }
 
     public static void createBrowserInstance(String browserName) {

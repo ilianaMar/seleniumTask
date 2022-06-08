@@ -37,7 +37,7 @@ public class RegisterPage extends BasePage {
         User user = User.builder()
                 .email(faker.internet().emailAddress())
                 .firstName(bgFaker.name().firstName())
-                .lastName(bgFaker.name().lastName())
+                .lastName(bgFaker.name().firstName())
                 .phone(bgFaker.phoneNumber().cellPhone())
                 .address(bgFaker.address().streetAddress())
                 .city(bgFaker.address().cityName())
@@ -53,13 +53,17 @@ public class RegisterPage extends BasePage {
         writeText(secondPasswordInputId, user.getPassword());
         writeText(phoneInputId, user.getPhone());
         writeText(firstNameInputId, user.getFirstName());
-        writeText(lastNameInputId, user.getFirstName());
+        writeText(lastNameInputId, user.getLastName());
         writeText(postcodeInputId, user.getPostcode());
         writeText(cityInputId, user.getCity());
         writeText(addressInputId, user.getAddress());
         find(gdprCheckboxId).click();
         find(confirmAgeCheckboxId).click();
         find(orderButtonId).click();
-        assertCurrentPageUrl(String.format("/%s/?done", urlPath));
+        if (driver.findElements(errorMessageId).size() == 0) {
+            assertCurrentPageUrl(String.format("/%s/?done", urlPath));
+        } else {
+            throw new RuntimeException("User is not create successfully");
+        }
     }
 }
